@@ -1,9 +1,10 @@
-// config/database.js
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config();  // Load environment variables from .env file
 
+// Import mongoose for MongoDB connection
 import mongoose from 'mongoose';
-//function to connect to mongoDB connection
+
+// Function to connect to MongoDB
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
@@ -19,4 +20,5 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;
+// orpP4HeOLAakAjjc

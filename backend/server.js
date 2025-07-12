@@ -1,30 +1,33 @@
-//import the dotenv dep to load variables
-import dotenv from 'dotenv';
-dotenv
-//import express
-import express from  'express';
+// Import the dotenv dep to load environment variables
+import dotenv from "dotenv";
+dotenv.config();
 
-//get the express app instance
+// Import express
+import express from "express";
+import ProductModel from "./models/product.model.js";
+import connectDB from "./config/db.js";
+import productRouter from "./routes/product.route.js";
+import cors from "cors";
+
+// Get the express app instance
 const app = express();
 
-//ths is test code
-//create a get request handler for the root route 
+app.use(express.json()); // Middleware to parse JSON bodies
 
-app.get('/', (req, res)=>{
-    res.send('Hello from the backend server');
+app.use(cors("*")); // Middleware to allow CORS
+app.use('/api/products', productRouter);
+
+
+// Create a get request handler for the root route
+app.get("/", (req, res) => {
+  res.send("Hello from the backend server!");
 });
 
-app.get('/users', (req, res)=>{
-    res.json([
-        { id:1, name:'John Kofi'},
-        { id:2, name: 'John Kwame'}
-    ]);
-});
 
-const PORT = process.env.PORT || 9000;
 
- 
-//start the server
-app.listen(PORT,() =>{
-    console.log(`server is running on port ${PORT}`);
+const PORT = process.env.PORT;
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`🚀Server is running on port ${PORT}`);
 });
