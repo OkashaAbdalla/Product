@@ -4,12 +4,14 @@ import NavBar from './assets/components/NavBar'
 import { Route, Routes } from 'react-router-dom'
 import CreatePage from './assets/pages/CreatePage';
 import HomePage from './assets/pages/HomePage';
+import {Toaster} from 'sonner';
 
 function App() {
 
 
   return (
     <>
+    <Toaster />
     {/* Fist we need a navbar component which is static across all pages */}
     <NavBar />
     <Routes>

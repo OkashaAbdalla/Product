@@ -1,7 +1,7 @@
 import { Button } from "@radix-ui/themes";
 import React from "react";
 
-function ConfirmModal({ setShowModal, productId }) {
+function ConfirmModal({ setShowModal, productId, refreshProducts }) {
   async function deleteProduct(id) {
     console.log("Deleting product with ID:", id);
     try {
@@ -15,12 +15,21 @@ function ConfirmModal({ setShowModal, productId }) {
 
       if (response.ok) {
         console.log("Product Deleted Successfully!");
+        refreshProducts(); 
+        setShowModal(false); 
+      
       }
       return data.product;
     } catch (error) {
       console.log(error);
     }
   }
+
+
+
+ 
+
+  
 
   return (
     <div className="absolute w-full h-screen bg-black/60 top-0 left-0 z-50 flex justify-center items-center">

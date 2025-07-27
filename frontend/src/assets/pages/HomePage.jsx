@@ -32,15 +32,15 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="h-screen m-0 overflow-auto">
-      <div className="w-[90%] mx-auto">
+    <div className=" h-screen m-0 overflow-auto">
+      <div className="mt-50 w-[90%] mx-auto">
         <h2 className="text-center flex justify-center items-center">
           Current Products
           <Rocket size={18} />
         </h2>
 
         {/**Grid container for the products */}
-        <div className="border-green-500 grid grid-cols-3 gap-4">
+        <div className=" border-green-500 grid grid-cols-3 gap-4">
           {products.length > 0 &&
             products.map((product) => (
               <ProductCard
@@ -48,12 +48,17 @@ function HomePage() {
                 product={product}
                 setShowModal={setShowModal}
                 setProductId={setProductId}
+                refreshProducts={getAllProducts}
               />
             ))}
         </div>
       </div>
       {showModal && (
-        <ConfirmModal setShowModal={setShowModal} productId={productId} />
+         <ConfirmModal
+          setShowModal={setShowModal}
+          productId={productId}
+          refreshProducts={getAllProducts}
+         />
       )}
     </div>
   );
